@@ -21,8 +21,8 @@ const calculateDisplayText = (placeholderText) => {
   let displayText;
   if (placeholderText.includes(' ')) {
     displayText = `${placeholderText.split(' ')[0]}(…)`;
-  } else if (placeholderText.length > 5 && placeholderText.includes('.')) {
-    displayText = placeholderText.split('.').slice(-1).pop();
+  // } else if (placeholderText.length > 5 && placeholderText.includes('.')) {
+  //   displayText = placeholderText.split('.').slice(-1).pop();
   } else {
     displayText = placeholderText;
   }
