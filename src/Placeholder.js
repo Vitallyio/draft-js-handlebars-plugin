@@ -68,7 +68,7 @@ export {
 
 export default class Placeholder extends Component {
   render() {
-    const {placeholder, url} = this.props;
+    const {placeholder, url, color} = this.props;
     const data = analizePlaceholder(placeholder);
     const display = this.props.display || data.display;
     const subTypes = data.subTypes;
@@ -120,7 +120,9 @@ export default class Placeholder extends Component {
             descriptions={descriptions}
             showPlaceholder={showPlaceholder} />
         }>
-        <div className={auxiliaryClassName || 'placeholder'}>
+        <div className={auxiliaryClassName || 'placeholder'} style={{
+          backgroundColor: color
+        }}>
           {!url ? display : <a href={url}>{display}</a>}
         </div>
       </Tooltip>

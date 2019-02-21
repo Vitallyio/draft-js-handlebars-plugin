@@ -44,6 +44,18 @@ function handleInCaseOfPlaceholderEntity(editorState, setEditorState, produceNew
   return 'not-handled';
 }
 
+const Component = (props) => {
+  const {contentState, children, entityKey} = props;
+  const entityData = contentState.getEntity(entityKey).data;
+  const data = {
+    placeholder: entityData.placeholder,
+    url: entityData.url,
+    display: children,
+    color: props.color
+  };
+  return <Placeholder {...data} />;
+};
+
 /**
  * This function is used to find all the matches according to a RegEx
  *
@@ -67,16 +79,7 @@ export default (config = {}) => {
   return {
     decorators: [{
       strategy: decoratorStrategy,
-      component: (props) => {
-        const {contentState, children, entityKey} = props;
-        const entityData = contentState.getEntity(entityKey).data;
-        const data = {
-          placeholder: entityData.placeholder,
-          url: entityData.url,
-          display: children,
-        };
-        return <Placeholder {...data} />;
-      },
+      component: config.Component || Component,
     }],
     /**
      * Overriding the handle return, so that pressing "enter" when the caret is on the placeholder
