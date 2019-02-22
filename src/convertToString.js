@@ -1,4 +1,4 @@
-export const convertToString = (editorState) => {
+export default (editorState) => {
   const raw = convertToRaw(editorState.getCurrentContent());
 
   return raw.blocks.reduce((acc, block) => {
